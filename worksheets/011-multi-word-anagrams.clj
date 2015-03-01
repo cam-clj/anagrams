@@ -346,21 +346,7 @@
 ;; <=
 
 ;; @@
-(def parts (partition-letters "letitbe" [3 2 2]))
-;; @@
-;; =>
-;;; {"type":"html","content":"<span class='clj-var'>#&#x27;anagrams.core/parts</span>","value":"#'anagrams.core/parts"}
-;; <=
-
-;; @@
-(def p (first parts))
-;; @@
-;; =>
-;;; {"type":"html","content":"<span class='clj-var'>#&#x27;anagrams.core/p</span>","value":"#'anagrams.core/p"}
-;; <=
-
-;; @@
-(expand-anagrams p)
+(expand-anagrams (first (partition-letters "letitbe" [3 2 2])))
 ;; @@
 ;; =>
 ;;; {"type":"list-like","open":"<span class='clj-lazy-seq'>(</span>","close":"<span class='clj-lazy-seq'>)</span>","separator":" ","items":[{"type":"list-like","open":"<span class='clj-lazy-seq'>(</span>","close":"<span class='clj-lazy-seq'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-string'>&quot;let&quot;</span>","value":"\"let\""},{"type":"html","content":"<span class='clj-string'>&quot;ti&quot;</span>","value":"\"ti\""},{"type":"html","content":"<span class='clj-string'>&quot;be&quot;</span>","value":"\"be\""}],"value":"(\"let\" \"ti\" \"be\")"},{"type":"list-like","open":"<span class='clj-lazy-seq'>(</span>","close":"<span class='clj-lazy-seq'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-string'>&quot;let&quot;</span>","value":"\"let\""},{"type":"html","content":"<span class='clj-string'>&quot;ti&quot;</span>","value":"\"ti\""},{"type":"html","content":"<span class='clj-string'>&quot;Be&quot;</span>","value":"\"Be\""}],"value":"(\"let\" \"ti\" \"Be\")"},{"type":"list-like","open":"<span class='clj-lazy-seq'>(</span>","close":"<span class='clj-lazy-seq'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-string'>&quot;let&quot;</span>","value":"\"let\""},{"type":"html","content":"<span class='clj-string'>&quot;it&quot;</span>","value":"\"it\""},{"type":"html","content":"<span class='clj-string'>&quot;be&quot;</span>","value":"\"be\""}],"value":"(\"let\" \"it\" \"be\")"},{"type":"list-like","open":"<span class='clj-lazy-seq'>(</span>","close":"<span class='clj-lazy-seq'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-string'>&quot;let&quot;</span>","value":"\"let\""},{"type":"html","content":"<span class='clj-string'>&quot;it&quot;</span>","value":"\"it\""},{"type":"html","content":"<span class='clj-string'>&quot;Be&quot;</span>","value":"\"Be\""}],"value":"(\"let\" \"it\" \"Be\")"},{"type":"list-like","open":"<span class='clj-lazy-seq'>(</span>","close":"<span class='clj-lazy-seq'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-string'>&quot;let&quot;</span>","value":"\"let\""},{"type":"html","content":"<span class='clj-string'>&quot;Ti&quot;</span>","value":"\"Ti\""},{"type":"html","content":"<span class='clj-string'>&quot;be&quot;</span>","value":"\"be\""}],"value":"(\"let\" \"Ti\" \"be\")"},{"type":"list-like","open":"<span class='clj-lazy-seq'>(</span>","close":"<span class='clj-lazy-seq'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-string'>&quot;let&quot;</span>","value":"\"let\""},{"type":"html","content":"<span class='clj-string'>&quot;Ti&quot;</span>","value":"\"Ti\""},{"type":"html","content":"<span class='clj-string'>&quot;Be&quot;</span>","value":"\"Be\""}],"value":"(\"let\" \"Ti\" \"Be\")"},{"type":"list-like","open":"<span class='clj-lazy-seq'>(</span>","close":"<span class='clj-lazy-seq'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-string'>&quot;let&quot;</span>","value":"\"let\""},{"type":"html","content":"<span class='clj-string'>&quot;It&quot;</span>","value":"\"It\""},{"type":"html","content":"<span class='clj-string'>&quot;be&quot;</span>","value":"\"be\""}],"value":"(\"let\" \"It\" \"be\")"},{"type":"list-like","open":"<span class='clj-lazy-seq'>(</span>","close":"<span class='clj-lazy-seq'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-string'>&quot;let&quot;</span>","value":"\"let\""},{"type":"html","content":"<span class='clj-string'>&quot;It&quot;</span>","value":"\"It\""},{"type":"html","content":"<span class='clj-string'>&quot;Be&quot;</span>","value":"\"Be\""}],"value":"(\"let\" \"It\" \"Be\")"}],"value":"((\"let\" \"ti\" \"be\") (\"let\" \"ti\" \"Be\") (\"let\" \"it\" \"be\") (\"let\" \"it\" \"Be\") (\"let\" \"Ti\" \"be\") (\"let\" \"Ti\" \"Be\") (\"let\" \"It\" \"be\") (\"let\" \"It\" \"Be\"))"}
@@ -502,5 +488,50 @@
 ;; <=
 
 ;; @@
+(def solve-anagram (comp print-solutions multi-word-anagrams))
+;; @@
+;; =>
+;;; {"type":"html","content":"<span class='clj-var'>#&#x27;anagrams.core/solve-anagram</span>","value":"#'anagrams.core/solve-anagram"}
+;; <=
 
 ;; @@
+(solve-anagram "letitbe" 4 3)
+;; @@
+;; ->
+;;; tile bet
+;;; lite bet
+;;; belt tie
+;;; bile Tet
+;;; Elbe tit
+;;; tilt bee
+;;; bite let
+;;; beet lit
+;;; 
+;; <-
+;; =>
+;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
+;; <=
+
+;; @@
+(solve-anagram "milesahead" 7 3)
+;; @@
+;; ->
+;;; malaise he&#x27;d
+;;; Amelia&#x27;s he&#x27;d
+;;; limeade has
+;;; limeade ash
+;;; emailed has
+;;; emailed ash
+;;; ashamed lie
+;;; ashamed lei
+;;; ashamed Lie
+;;; ashamed Eli
+;;; aliased hem
+;;; leashed aim
+;;; leashed Mia
+;;; leashed Mai
+;;; 
+;; <-
+;; =>
+;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
+;; <=
