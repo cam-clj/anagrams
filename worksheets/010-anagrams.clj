@@ -556,7 +556,7 @@
 ;; **
 ;;; # Where to go from here
 ;;; 
-;;; If you've enjoyed the tutorial so far, you can load the next worksheet `worksheets/011-multi-word-anagrams.clj` and learn how to solve anagrams whose solution consists of more than one word, or take a look at `src/anagrams/core.clj` for a complete solution with a command-line interface.
+;;; If you've enjoyed the tutorial so far, you can load the next worksheet `worksheets/011-multi-word-anagrams.clj` and learn how to solve anagrams whose solution consists of more than one word, or take a look at `src/cam_clj/anagrams.clj` for a complete solution with a command-line interface.
 ;;; 
 ;;; Other good resources for learning Clojure include:
 ;;; * [Clojure for the Brave and True](http://www.braveclojure.com/)
