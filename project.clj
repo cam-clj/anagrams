@@ -4,7 +4,8 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/math.combinatorics "0.0.8"]]
+                 [org.clojure/math.combinatorics "0.0.8"]
+                 [org.apache.commons/commons-lang3 "3.3.2"]]
   :plugins [[lein-gorilla "0.3.4"]]
   ;;:main ^:skip-aot cam-clj.anagrams
   ;;:target-path "target/%s"

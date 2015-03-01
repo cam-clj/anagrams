@@ -320,6 +320,40 @@
 ;; @@
 (import '[org.apache.commons.lang3 StringUtils])
 ;; @@
+;; =>
+;;; {"type":"html","content":"<span class='clj-class'>org.apache.commons.lang3.StringUtils</span>","value":"org.apache.commons.lang3.StringUtils"}
+;; <=
+
+;; **
+;;; 
+;; **
+
+;; @@
+(defn strip-accents
+  [word]
+  (StringUtils/stripAccents word))
+;; @@
+;; =>
+;;; {"type":"html","content":"<span class='clj-var'>#&#x27;anagrams.core/strip-accents</span>","value":"#'anagrams.core/strip-accents"}
+;; <=
+
+;; @@
+(strip-accents (nth words 63793))
+;; @@
+;; =>
+;;; {"type":"html","content":"<span class='clj-string'>&quot;metier&quot;</span>","value":"\"metier\""}
+;; <=
+
+;; **
+;;; Once we've stripped accents from the word, we can convert it to lower-case and remove any non-alphabetic charaters from the key. Recall that we can use a Clojure set as a predicate function:
+;; **
+
+;; @@
+(def alphabetic? (set (seq "abcdefghijklmnopqrstuvwxyz")))
+;; @@
+;; =>
+;;; {"type":"html","content":"<span class='clj-var'>#&#x27;anagrams.core/alphabetic?</span>","value":"#'anagrams.core/alphabetic?"}
+;; <=
 
 ;; @@
 (alphabetic? \a)
@@ -337,7 +371,7 @@
 ;; <=
 
 ;; **
-;;; Recall the definition of `word->key`:
+;;; Back to our definition of `word->key`:
 ;; **
 
 ;; @@
@@ -350,13 +384,13 @@
 ;; <=
 
 ;; **
-;;; We want to convert it to lower-case and remove non-alphabetic characters before we sort and join:
+;;; We want to strip accents, convert it to lower-case, and remove non-alphabetic characters before we sort and join:
 ;; **
 
 ;; @@
 (defn word->key
   [word]
-  (str/join (sort (filter alphabetic? (seq (str/lower-case word))))))
+  (str/join (sort (filter alphabetic? (seq (str/lower-case (strip-accents word)))))))
 ;; @@
 ;; =>
 ;;; {"type":"html","content":"<span class='clj-var'>#&#x27;anagrams.core/word-&gt;key</span>","value":"#'anagrams.core/word->key"}
@@ -369,7 +403,8 @@
 ;; @@
 (defn word->key
   [word]
-  (->> (str/lower-case word)
+  (->> (strip-accents word)
+       (str/lower-case)
        (seq)
        (filter alphabetic?)
        (sort)
@@ -384,14 +419,15 @@
 ;; **
 
 ;; @@
-(macroexpand-1 '(->> (str/lower-case "ANT")
-                     (seq) 
+(macroexpand-1 '(->> (strip-accents "ANT")
+                     (str/lower-case)
+                     (seq)
                      (filter alphabetic?) 
                      (sort) 
                      (str/join)))
 ;; @@
 ;; =>
-;;; {"type":"list-like","open":"<span class='clj-list'>(</span>","close":"<span class='clj-list'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-symbol'>str/join</span>","value":"str/join"},{"type":"list-like","open":"<span class='clj-list'>(</span>","close":"<span class='clj-list'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-symbol'>sort</span>","value":"sort"},{"type":"list-like","open":"<span class='clj-list'>(</span>","close":"<span class='clj-list'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-symbol'>filter</span>","value":"filter"},{"type":"html","content":"<span class='clj-symbol'>alphabetic?</span>","value":"alphabetic?"},{"type":"list-like","open":"<span class='clj-list'>(</span>","close":"<span class='clj-list'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-symbol'>seq</span>","value":"seq"},{"type":"list-like","open":"<span class='clj-list'>(</span>","close":"<span class='clj-list'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-symbol'>str/lower-case</span>","value":"str/lower-case"},{"type":"html","content":"<span class='clj-string'>&quot;ANT&quot;</span>","value":"\"ANT\""}],"value":"(str/lower-case \"ANT\")"}],"value":"(seq (str/lower-case \"ANT\"))"}],"value":"(filter alphabetic? (seq (str/lower-case \"ANT\")))"}],"value":"(sort (filter alphabetic? (seq (str/lower-case \"ANT\"))))"}],"value":"(str/join (sort (filter alphabetic? (seq (str/lower-case \"ANT\")))))"}
+;;; {"type":"list-like","open":"<span class='clj-list'>(</span>","close":"<span class='clj-list'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-symbol'>str/join</span>","value":"str/join"},{"type":"list-like","open":"<span class='clj-list'>(</span>","close":"<span class='clj-list'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-symbol'>sort</span>","value":"sort"},{"type":"list-like","open":"<span class='clj-list'>(</span>","close":"<span class='clj-list'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-symbol'>filter</span>","value":"filter"},{"type":"html","content":"<span class='clj-symbol'>alphabetic?</span>","value":"alphabetic?"},{"type":"list-like","open":"<span class='clj-list'>(</span>","close":"<span class='clj-list'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-symbol'>seq</span>","value":"seq"},{"type":"list-like","open":"<span class='clj-list'>(</span>","close":"<span class='clj-list'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-symbol'>str/lower-case</span>","value":"str/lower-case"},{"type":"list-like","open":"<span class='clj-list'>(</span>","close":"<span class='clj-list'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-symbol'>strip-accents</span>","value":"strip-accents"},{"type":"html","content":"<span class='clj-string'>&quot;ANT&quot;</span>","value":"\"ANT\""}],"value":"(strip-accents \"ANT\")"}],"value":"(str/lower-case (strip-accents \"ANT\"))"}],"value":"(seq (str/lower-case (strip-accents \"ANT\")))"}],"value":"(filter alphabetic? (seq (str/lower-case (strip-accents \"ANT\"))))"}],"value":"(sort (filter alphabetic? (seq (str/lower-case (strip-accents \"ANT\")))))"}],"value":"(str/join (sort (filter alphabetic? (seq (str/lower-case (strip-accents \"ANT\"))))))"}
 ;; <=
 
 ;; **
@@ -401,7 +437,8 @@
 ;; @@
 (defn word->key
   [word]
-  (->> (str/lower-case word)
+  (->> (strip-accents word)
+       (str/lower-case)
        (filter alphabetic?)
        (sort)
        (str/join)))
@@ -421,10 +458,17 @@
 ;;; {"type":"list-like","open":"<span class='clj-lazy-seq'>(</span>","close":"<span class='clj-lazy-seq'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-string'>&quot;a&quot;</span>","value":"\"a\""},{"type":"html","content":"<span class='clj-string'>&quot;as&quot;</span>","value":"\"as\""},{"type":"html","content":"<span class='clj-string'>&quot;aas&quot;</span>","value":"\"aas\""},{"type":"html","content":"<span class='clj-string'>&quot;abs&quot;</span>","value":"\"abs\""},{"type":"html","content":"<span class='clj-string'>&quot;abms&quot;</span>","value":"\"abms\""},{"type":"html","content":"<span class='clj-string'>&quot;acs&quot;</span>","value":"\"acs\""},{"type":"html","content":"<span class='clj-string'>&quot;achst&quot;</span>","value":"\"achst\""},{"type":"html","content":"<span class='clj-string'>&quot;ais&quot;</span>","value":"\"ais\""},{"type":"html","content":"<span class='clj-string'>&quot;adiss&quot;</span>","value":"\"adiss\""},{"type":"html","content":"<span class='clj-string'>&quot;ams&quot;</span>","value":"\"ams\""}],"value":"(\"a\" \"as\" \"aas\" \"abs\" \"abms\" \"acs\" \"achst\" \"ais\" \"adiss\" \"ams\")"}
 ;; <=
 
+;; @@
+(word->key (nth words 63793))
+;; @@
+;; =>
+;;; {"type":"html","content":"<span class='clj-string'>&quot;eeimrt&quot;</span>","value":"\"eeimrt\""}
+;; <=
+
 ;; **
 ;;; # Putting it all together
 ;;; 
-;;; We can now generate a dictionary from the large wordlist:
+;;; We can now generate a dictionary from the large wordlist (this may take a few seconds):
 ;; **
 
 ;; @@
@@ -456,9 +500,66 @@
 (anagrams "merit")
 ;; @@
 ;; =>
-;;; {"type":"list-like","open":"<span class='clj-list'>(</span>","close":"<span class='clj-list'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-string'>&quot;timer&quot;</span>","value":"\"timer\""},{"type":"html","content":"<span class='clj-string'>&quot;remit&quot;</span>","value":"\"remit\""},{"type":"html","content":"<span class='clj-string'>&quot;métier&quot;</span>","value":"\"métier\""},{"type":"html","content":"<span class='clj-string'>&quot;mitre&quot;</span>","value":"\"mitre\""},{"type":"html","content":"<span class='clj-string'>&quot;merit&quot;</span>","value":"\"merit\""}],"value":"(\"timer\" \"remit\" \"métier\" \"mitre\" \"merit\")"}
+;;; {"type":"list-like","open":"<span class='clj-list'>(</span>","close":"<span class='clj-list'>)</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-string'>&quot;timer&quot;</span>","value":"\"timer\""},{"type":"html","content":"<span class='clj-string'>&quot;remit&quot;</span>","value":"\"remit\""},{"type":"html","content":"<span class='clj-string'>&quot;mitre&quot;</span>","value":"\"mitre\""},{"type":"html","content":"<span class='clj-string'>&quot;merit&quot;</span>","value":"\"merit\""}],"value":"(\"timer\" \"remit\" \"mitre\" \"merit\")"}
 ;; <=
 
-;; @@
+;; **
+;;; Our complete namespace would look something like:
+;; **
 
 ;; @@
+(ns anagrams.core
+  (:require [clojure.java.io :as io]
+            [clojure.string :as str])
+  (:import [org.apache.commons.lang3 StringUtils]))
+
+
+(def alphabetic? (set (seq "abcdefghijklmnopqrstuvwxyz")))
+
+(defn strip-accents
+  "Strip accents from a string."
+  [word]
+  (StringUtils/stripAccents word))
+
+(defn word->key
+  "Compute the anagram key for a word."
+  [word]
+  (->> (strip-accents word)
+       (str/lower-case)
+       (filter alphabetic?)
+       (sort)
+       (str/join)))
+
+(defn add-word-to-dictionary
+  "Add a single word to the dictionary."
+  [dict word]
+  (update-in dict [(word->key word)] conj word))
+
+(defn build-dictionary
+  "Build a dictionary from the given list of words"
+  [words]
+  (reduce add-word-to-dictionary {} words))
+
+(defn read-wordlist
+  "Read words from the specified file or resource."
+  [source]
+  (str/split-lines (slurp source)))
+
+(def dict (build-dictionary (read-wordlist (io/resource "words"))))
+
+(def anagrams (comp dict word->key))
+;; @@
+;; =>
+;;; {"type":"html","content":"<span class='clj-var'>#&#x27;anagrams.core/anagrams</span>","value":"#'anagrams.core/anagrams"}
+;; <=
+
+;; **
+;;; # Where to go from here
+;;; 
+;;; If you've enjoyed the tutorial so far, you can load the next worksheet `worksheets/011-multi-word-anagrams.clj` and learn how to solve anagrams whose solution consists of more than one word, or take a look at `src/anagrams/core.clj` for a complete solution with a command-line interface.
+;;; 
+;;; Other good resources for learning Clojure include:
+;;; * [Clojure for the Brave and True](http://www.braveclojure.com/)
+;;; * [Clojure from the Ground Up](https://aphyr.com/posts/301-clojure-from-the-ground-up-welcome)
+;;; * [4Clojure](https://www.4clojure.com/)
+;; **
