@@ -3,7 +3,7 @@
 ;; **
 ;;; # Multi-word anagrams
 ;;; 
-;;; **This part of the tutorial is aimed at more experencied Clojure programmers; an algorithm is described and it is left as an exercise for you to implement the algorithm.**
+;;; **This part of the tutorial is aimed at more experencied Clojure programmers; an algorithm is described and it is left as an exercise for you to implement it.**
 ;;; 
 ;;; We use some functions from [org.clojure/math.combinatorics](https://github.com/clojure/math.combinatorics) to solve multi-word anagrams, so start with a slightly revised namespace declaration (that adds the combinatorics functions we'll need):
 ;; **
