@@ -89,7 +89,7 @@
 ;; **
 ;;; # The Algorithm
 ;;; 
-;;; We split the problem into two parts: first, find all partitions of the letters into the specified word-lengths, such that every part of earh partition appears in the anagram dictionary; once we have the partitions, compute the cartesian product of the anagrams of each part of the partition.
+;;; We split the problem into two parts: first, find all partitions of the letters into the specified word-lengths, such that every part of each partition appears in the anagram dictionary; once we have the partitions, compute the cartesian product of the anagrams of each part of the partition.
 ;;; 
 ;;; While we could use `clojure.math.combinatorics/partitions` to comupte all partitons and filter the results, this approach would be terribly inefficient.
 ;;; 

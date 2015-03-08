@@ -236,7 +236,7 @@
 ;; <=
 
 ;; **
-;;; Let's encapsualte this an a `build-dictionary` function:
+;;; Let's encapsualte this in a `build-dictionary` function:
 ;; **
 
 ;; @@

@@ -93,13 +93,11 @@
   (doseq [x xs]
     (println (str/join " " x))))
 
-(def solve-anagram (comp print-solutions multi-word-anagrams))
-
 (defn parse-int
   [s]
   (Integer/parseInt s))
 
 (defn -main [letters & word-lengths]
   (if (empty? word-lengths)
-    (solve-anagram letters [(count letters)])
-    (solve-anagram letters (map parse-int word-lengths))))
+    (print-solutions (multi-word-anagrams letters [(count letters)]))
+    (print-solutions (multi-word-anagrams letters (map parse-int word-lengths)))))
