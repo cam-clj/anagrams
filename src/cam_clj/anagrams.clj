@@ -83,7 +83,7 @@
   (apply cartesian-product (map anagrams parts)))
 
 (defn multi-word-anagrams
-  [letters & word-lengths]
+  [letters word-lengths]
   {:pre [(= (count letters) (reduce + word-lengths))]}
   (mapcat expand-anagrams
           (partition-letters letters word-lengths)))
@@ -101,5 +101,5 @@
 
 (defn -main [letters & word-lengths]
   (if (empty? word-lengths)
-    (solve-anagram letters (count letters))
-    (apply solve-anagram letters (map parse-int word-lengths))))
+    (solve-anagram letters [(count letters)])
+    (solve-anagram letters (map parse-int word-lengths))))
