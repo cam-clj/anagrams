@@ -669,7 +669,7 @@ xs
 ;; @@
 
 ;; **
-;;; 1111: Write a function, `count-short-words`, that takes a string and returns the number of short words found in the string. Modify this function to return the number of *distinct* short words in the string (two words with different capitalization should not be considered distinct; in our example above, "The" and "the" should be considered as equivalent).
+;;; 1111: Write a function, `count-short-words`, that takes a string and returns the number of short words found in the string. Modify this function to return the number of *distinct* short words in the string (the same word with different capitalization should not be considered distinct; in our example above, "The" and "the" should be considered as equivalent).
 ;; **
 
 ;; @@
