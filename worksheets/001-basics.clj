@@ -67,6 +67,12 @@ true
 
 ;; @@
 (require '[clojure.repl :refer [doc]])
+;; @@
+;; =>
+;;; {"type":"html","content":"<span class='clj-nil'>nil</span>","value":"nil"}
+;; <=
+
+;; @@
 (doc class)
 ;; @@
 ;; ->
@@ -543,7 +549,133 @@ xs
 ;; <=
 
 ;; **
-;;; The [Clojure Cheat Sheet](http://jafingerhut.github.io/cheatsheet/clojuredocs/cheatsheet-tiptip-no-cdocs-summary.html) is a handy reference to the core Clojure library - you'll find it convenient to keep this open in another browser tab.
 ;;; 
-;;; You know enough now to make a start on our anagram solver. When you're ready, open the worksheet '010-anagrams.clj'.
+;;; 
+;;; 
+;; **
+
+;; **
+;;; # Exercises
+;;; 
+;;; 
+;;; 0001: The [Clojure Cheat Sheet](http://jafingerhut.github.io/cheatsheet/clojuredocs/cheatsheet-tiptip-no-cdocs-summary.html) is a handy reference to the core Clojure library. Open up the cheat sheet in another tab. Using the cheat sheet, find the function that adds new key/value to a map, and add `:d => 4` to the map below.
+;; **
+
+;; @@
+(def m {:a 1 :b 2 :c 3})
+;; @@
+;; =>
+;;; {"type":"html","content":"<span class='clj-var'>#&#x27;user/m</span>","value":"#'user/m"}
+;; <=
+
+;; **
+;;; 0010: Using the function you found above, change the value of `:a` in the map `m` to 4. (Remember that this does not actually modify `m`, but returns a new map with the change applied.)
+;; **
+
+;; @@
+
+;; @@
+
+;; **
+;;; 0011: Again using the cheat sheet, find a function to remove a key/value from a map. Remove `:c` from the map `m`.
+;; **
+
+;; @@
+
+;; @@
+
+;; **
+;;; 0100: Define a set, `s`, contanining the elements 1,2,3,4,5
+;; **
+
+;; **
+;;; 
+;; **
+
+;; @@
+
+;; @@
+
+;; **
+;;; 0101: Using the `conj` function, add the element 6 to the set.
+;; **
+
+;; @@
+
+;; @@
+
+;; **
+;;; 0110: What happens if you add the element 5 to `s`?
+;; **
+
+;; @@
+
+;; @@
+
+;; **
+;;; 0111: What happens if you use the `#{}` short-cut to create a set containing the elements 1,2,3,4,5,5 ?
+;; **
+
+;; @@
+
+;; @@
+
+;; **
+;;; 1000: Remove the element 3 from the set `s`.
+;; **
+
+;; @@
+
+;; @@
+
+;; **
+;;; 1001: Write a function, `short-word?`, that takes a single string argument, `s`, and returns `true` if the length of the string is less than or equal to 3, otherwise false.
+;; **
+
+;; @@
+
+;; @@
+
+;; **
+;;; 1011: Define a string, `s`, with the value "The quick brown fox jumps over the lazy dog"
+;; **
+
+;; @@
+
+;; @@
+
+;; **
+;;; 1100: Using `require` and `:as`, load the `clojure.string` library and alias it to `str`.
+;; **
+
+;; @@
+
+;; @@
+
+;; **
+;;; 1101: Using a function from the `clojure.string` library, build a vector, `v`, containing the individual words from the string `s`.
+;; **
+
+;; @@
+
+;; @@
+
+;; **
+;;; 1110: Using the `short-word?` function you defined earlier, count the number of short words in the vector `v`.
+;; **
+
+;; @@
+
+;; @@
+
+;; **
+;;; 1111: Write a function, `count-short-words`, that takes a string and returns the number of short words found in the string. Modify this function to return the number of *distinct* short words in the string (two words with different capitalization should not be considered distinct; in our example above, "The" and "the" should be considered as equivalent).
+;; **
+
+;; @@
+
+;; @@
+
+;; **
+;;; **You know enough now to make a start on our anagram solver. When you're ready, open the worksheet '010-anagrams.clj'.**
 ;; **
