@@ -71,9 +71,8 @@
     (if (anagrams letters)
       (list (list letters))
       nil)
-    (let [n            (first word-lengths)
-          candidates-n (filter anagrams (distinct-by word->key (map str/join (combinations letters n))))]
-      (reduce concat (for [candidate candidates-n
+    (let [n (first word-lengths)]
+      (reduce concat (for [candidate (filter anagrams (distinct-by word->key (map str/join (combinations letters n))))
                            :let [remaining-letters (remove-chars letters candidate)
                                  remaining-solutions (partition-letters remaining-letters (rest word-lengths))]
                            :when (not (empty? remaining-solutions))]
